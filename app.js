@@ -8,9 +8,9 @@ const app = express();
 const PORT = process.env.PORT || 10000;
 const uri = process.env.DATABASE_URL;
 
+app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
-app.use(cors());
 app.use("/", route);
 
 mongoose
