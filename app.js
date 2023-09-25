@@ -8,13 +8,9 @@ const app = express();
 const PORT = process.env.PORT || 10000;
 const uri = process.env.DATABASE_URL;
 
-const corsOptions = {
-  origin: "https://zomatoclonefrontend.onrender.com",
-  optionsSuccessStatus: 200,
-};
 app.use(express.json());
 app.use(express.static("public"));
-app.use(cors(corsOptions));
+app.use(cors());
 app.use("/", route);
 
 mongoose
