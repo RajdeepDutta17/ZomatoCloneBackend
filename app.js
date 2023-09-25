@@ -9,12 +9,12 @@ const PORT = process.env.PORT || 10000;
 const uri = process.env.DATABASE_URL;
 
 const corsOptions = {
-  origin: process.env.REQUEST_URL,
+  origin: "https://zomatoclonefrontend.onrender.com",
   optionsSuccessStatus: 200,
 };
-app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.static("public"));
+app.use(cors(corsOptions));
 app.use("/", route);
 
 mongoose
