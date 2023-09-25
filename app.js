@@ -8,8 +8,19 @@ const app = express();
 const PORT = process.env.PORT || 3500;
 const uri = process.env.DATABASE_URL;
 
+const whitelist = [
+  "http://localhost:3000",
+  "https://zomatoclonefrontend.onrender.com",
+];
 const corsOptions = {
-  origin: "https://zomatoclonefrontend.onrender.com",
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  optionsSuccessStatus: 200,
 };
 
 app.use(cors(corsOptions));
