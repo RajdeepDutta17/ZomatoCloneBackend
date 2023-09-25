@@ -8,11 +8,11 @@ const app = express();
 const PORT = process.env.PORT || 10000;
 const uri = process.env.DATABASE_URL;
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  next();
-});
-app.use(cors());
+const corsOptions = {
+  origin: process.env.REQUEST_URL,
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.static("public"));
 app.use("/", route);
