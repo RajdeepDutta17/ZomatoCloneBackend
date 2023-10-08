@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const route = require("./routes/index");
-const cors = require("cors");
 require("dotenv").config();
 
 const app = express();
@@ -26,7 +25,15 @@ const uri = process.env.DATABASE_URL;
 
 app.use(express.json());
 app.use(express.static("public"));
-app.use(cors());
+app.use((req, res, next) => {
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://zomatoclonefrontend.onrender.com"
+  );
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
 app.use("/", route);
 
 mongoose
