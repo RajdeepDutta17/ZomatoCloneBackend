@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const route = require("./routes/index");
 require("dotenv").config();
+const cors = require("cors");
 
 const app = express();
 const PORT = process.env.PORT || 10000;
@@ -25,6 +26,7 @@ const uri = process.env.DATABASE_URL;
 
 app.use(express.json());
 app.use(express.static("public"));
+app.use(cors());
 // app.use((req, res, next) => {
 //   res.header(
 //     "Access-Control-Allow-Origin",

@@ -1,5 +1,5 @@
 const express = require("express");
-
+const cors = require("cors");
 const restaurantController = require("../controllers/restaurant");
 const locationController = require("../controllers/location");
 const mealtypeController = require("../controllers/mealtype");
@@ -32,5 +32,5 @@ route.get(
 route.post("/filter", restaurantController.filterRestaurants);
 route.post("/signup", userController.userSignup);
 route.post("/login", userController.userLogin);
-route.post("/payments", paymentController.payment);
+route.post("/payments", cors(), paymentController.payment);
 module.exports = route;
